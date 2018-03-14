@@ -48,6 +48,9 @@
 #ifdef HAVE_DRIVER_ILI9341
 #include "ili9341.h"
 #endif
+#ifdef HAVE_DRIVER_VUSOLO4K
+#include "vusolo4k.h"
+#endif
 
 namespace GLCD
 {
@@ -89,6 +92,9 @@ tDriver drivers[] =
 #endif
 #ifdef HAVE_DRIVER_ILI9341
     {"ili9341",       kDriverILI9341},
+#endif
+#ifdef HAVE_DRIVER_VUSOLO4K
+    {"vusolo4k",      kDriverVUSOLO4K},
 #endif
     {"",              kDriverUnknown}
 };
@@ -171,6 +177,10 @@ cDriver * CreateDriver(int driverID, cDriverConfig * config)
 #ifdef HAVE_DRIVER_ILI9341
         case kDriverILI9341:
             return new cDriverILI9341(config);
+#endif
+#ifdef HAVE_DRIVER_VUSOLO4K
+        case kDriverVUSOLO4K:
+            return new cDriverVUSOLO4K(config);
 #endif
         case kDriverUnknown:
         default:
